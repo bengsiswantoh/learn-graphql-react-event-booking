@@ -4,15 +4,18 @@
   top: 0;
   width: 100%;
   height: 3.5rem;
-  background-color: #01d1d1;
-  padding: 0 1rem;
+  background-color: #5101d1;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .main-navigation__logo h1 {
   margin: 0;
   font-size: 1.5rem;
+  color: #dfcefc;
 }
 
 .main-navigation__items {
@@ -21,8 +24,8 @@
 
 .main-navigation__items ul {
   display: flex;
-  padding: 0;
   list-style: none;
+  padding: 0;
   margin: 0;
   align-items: center;
 }
