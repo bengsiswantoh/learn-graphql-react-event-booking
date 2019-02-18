@@ -6,6 +6,7 @@ import "./EventList.css";
 
 const eventList = props => {
   const events = props.events.map(event => {
+    // console.log(props.authUserId);
     return (
       <EventItem
         key={event._id}

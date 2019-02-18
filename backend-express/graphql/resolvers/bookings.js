@@ -29,7 +29,7 @@ module.exports = {
         event: fetchedEvent
       });
       const result = await booking.save();
-      return transformBooking(result._doc);
+      return transformBooking(result);
     } catch (err) {
       throw err;
     }
