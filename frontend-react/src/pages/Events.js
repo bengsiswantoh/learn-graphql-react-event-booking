@@ -105,8 +105,8 @@ class EventsPage extends Component {
 
     const requestBody = {
       query: `
-        mutation {
-          createEvent(eventInput: {title: "${title}", price: ${price}, date: "${date}", description: "${description}"}) {
+        mutation CreateEvent($title: String!, $price: Float!, $date: String!, $description: String!) {
+          createEvent(eventInput: {title: $title, price: $price, date: $date, description: $description}) {
             _id
             title
             description
@@ -114,7 +114,13 @@ class EventsPage extends Component {
             price
           }
         }
-      `
+      `,
+      variables: {
+        title,
+        price,
+        date,
+        description
+      }
     };
 
     const token = this.context.token;
@@ -135,7 +141,7 @@ class EventsPage extends Component {
       })
       .then(resData => {
         this.setState(prevState => {
-          const updatedEvent = [...prevState];
+          const updatedEvent = [...prevState.events];
           updatedEvent.push({
             _id: resData.data.createEvent._id,
             title: resData.data.createEvent.title,
@@ -168,14 +174,17 @@ class EventsPage extends Component {
     }
     const requestBody = {
       query: `
-        mutation {
-          bookEvent(eventId: "${this.state.selectedEvent._id}") {
+        mutation($id: ID!) {
+          bookEvent(eventId: $id) {
             _id
             createdAt
             updatedAt
           }
         }
-      `
+      `,
+      variables: {
+        id: this.state.selectedEvent._id
+      }
     };
 
     fetch("http://localhost:8000/graphql", {

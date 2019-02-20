@@ -62,13 +62,16 @@ class BookingsPage extends Component {
 
     const requestBody = {
       query: `
-        mutation {
-          cancelBooking(bookingId: "${bookingId}") {
+        mutation CancelBooking($bookingId: ID!) {
+          cancelBooking(bookingId: $bookingId) {
             _id
             title
           }
         }
-      `
+      `,
+      variables: {
+        bookingId
+      }
     };
 
     fetch("http://localhost:8000/graphql", {
